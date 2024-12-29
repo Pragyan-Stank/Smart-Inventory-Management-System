@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Inventory Dashboard</h1>
+
+    <!-- Search Form -->
+    <form action="{{ url_for('search_product') }}" method="POST" class="search-form">
+        <input type="text" name="search_query" placeholder="Search by name or category">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+
+    <!-- Products Table -->
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+            <th>Category</th>
+            <th>Actions</th> <!-- Actions column for Delete button -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr id="product-{{ product['_id'] }}">
+            <td>{{ product['name'] }}</td>
+            <td>{{ product['quantity'] }}</td>
+            <td>{{ product['price_per_unit'] }}</td>
+            <td>{{ product['category'] }}</td>
+            <td>
+                <!-- AJAX Delete Button -->
+                <button class="delete-button" data-id="{{ product['_id'] }}" data-name="{{ product['name'] }}">
+    Delete
+</button>
+
+
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+    <a href="{{ url_for('add_product') }}" class="btn-link">Add New Product</a>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
