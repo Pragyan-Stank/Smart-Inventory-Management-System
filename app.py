@@ -21,7 +21,7 @@ genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
 # MongoDB connection
-uri = "mongodb+srv://pragyansrivastavaofficial616:3050F2g7rSrCKT0r@pragyan.in3t6.mongodb.net/?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true"
+uri = "your_mongodb_connection_string"
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client.get_database('inventory')
 products_collection = db.products
